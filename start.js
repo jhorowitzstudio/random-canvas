@@ -1,8 +1,5 @@
 'use strict';
 
-
-// RUN node start
-
 const Jimp = require('jimp');
 const fs = require('fs');
 const readline = require('readline');
