@@ -18,5 +18,8 @@
   "homepage": "https://github.com/dillon/c-and-p#readme",
   "dependencies": {
     "jimp": "^0.6.0"
+  },
+  "pkg": {
+    "assets": ["saved-images/", "temp/", "images/**/*" ]
   }
 }
