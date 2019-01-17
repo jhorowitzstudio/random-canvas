@@ -76,16 +76,14 @@ rl.question('Total canvas Width: ', imageWidth => {
       borderWidth = verifyInput(borderWidth, true)
       rl.question('Width of each icon (small image): ', iconWidth => {
         iconWidth = verifyInput(iconWidth)
-        rl.question('What is the current standard ratio of the images? enter in pixels as WIDTH:HEIGHT  ' , rawRatio => {
-          
+        rl.question('What is the current standard ratio of the images? enter in pixels as WIDTH:HEIGHT  ', rawRatio => {
           rawRatio = rawRatio.split(':')
+          if (rawRatio.length !== 2) { console.log('The formatting of your answer was incorrect. Try 450:203'); rl.close(); process.exit(1) }
           const currentIconWidth = rawRatio[0]
           const currentIconHeight = rawRatio[1]
           console.log('\ncreating image...')
           newCanvas({ imageWidth, imageHeight, borderWidth, iconWidth, currentIconHeight, currentIconWidth })
         })
-        
-        
       })
     })
   })
@@ -95,8 +93,8 @@ async function newCanvas(measurements) {
   // gather measurements
   let { imageWidth, imageHeight, iconWidth, borderWidth, currentIconHeight, currentIconWidth } = measurements;
 
-  const calculatedIconHeight = iconWidth/(currentIconWidth/currentIconHeight)
-  
+  const calculatedIconHeight = iconWidth / (currentIconWidth / currentIconHeight)
+
 
   // subtract remainder space from image's size
   imageWidth = imageWidth - (imageWidth % iconWidth)
@@ -146,13 +144,10 @@ async function newCanvas(measurements) {
 
   function resizeImage(fileName) {
     return new Promise((resolve, reject) => {
-      Jimp.read(IMAGE_FOLDER + fileName).then(function (image) {
+      Jimp.read(IMAGE_FOLDER + fileName).then(async function (image) {
         image
           .resize(iconWidth, Jimp.AUTO)
-          .quality(100)
-          .write(TEMP_FOLDER + fileName);
-      }).then(() => {
-        resolve(fileName)
+        resolve(image)
       }).catch(function (e) {
         reject(e + ' (for file): ' + fileName)
       });
@@ -168,28 +163,18 @@ async function newCanvas(measurements) {
       for (let i = 0; i < iconPerColumn; i++) {
         for (let j = 0; j < iconPerRow; j++) {
           const randomValue = Math.floor(Math.random() * images.length)
-          const image = await Jimp.read(TEMP_FOLDER + myImages[randomValue]);
+          const image = myImages[randomValue];
           canvas.blit(image,
             borderWidth + (j * iconWidth),
             borderWidth + (i * calculatedIconHeight)
           )
         }
       }
-
-      function unlinkFiles() {
-        fs.readdir(TEMP_FOLDER, (err, files) => {
-          if (err) throw (err);
-          for (let file of files) {
-            fs.unlink(TEMP_FOLDER + file, (err) => {
-              if (err) throw err;
-            })
-          }
+      canvas
+        .write(SAVED_IMAGES + imageFileName, () => {
           console.log(texts.outro)
           rl.close()
-        })
-      }
-      canvas
-        .write(`${SAVED_IMAGES}${imageFileName}`, unlinkFiles)
+        });
     });
   }
 };

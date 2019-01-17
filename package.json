@@ -1,5 +1,5 @@
 {
-  "name": "cokeandpepsi",
+  "name": "rcanvas",
   "version": "1.0.0",
   "description": "",
   "main": "start.js",
@@ -18,8 +18,5 @@
   "homepage": "https://github.com/dillon/c-and-p#readme",
   "dependencies": {
     "jimp": "^0.6.0"
-  },
-  "pkg": {
-    "assets": ["saved-images/", "temp/", "images/**/*" ]
   }
 }
