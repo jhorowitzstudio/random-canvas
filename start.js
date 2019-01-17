@@ -1,5 +1,8 @@
 'use strict';
 
+// memory issues, try this api next:
+// http://sharp.pixelplumbing.com/en/stable/api-composite/
+
 const Jimp = require('jimp');
 const fs = require('fs');
 const readline = require('readline');
@@ -45,24 +48,18 @@ function verifyInput(input, allowedZero = false) {
         input = parseInt(input)
         if (input === 0 && !allowedZero) {
           console.log('You can\'t use 0 for this dimension')
-          rl.close();
           process.exit(1)
-        } else {
-          return input
-        }
+        } else return input
       } else {
         console.log('Your answer was not a positive integer. Do not use negative numbers or decimals')
-        rl.close();
         process.exit(1);
       }
     } else {
       console.log('can\'t leave a question blank. Use 0 for 0')
-      rl.close();
       process.exit(1);
     }
   } catch (error) {
     console.log('Unknown error with your answer. Try reading the directions in Prompts.')
-    rl.close();
     process.exit(1);
   }
 }
@@ -153,8 +150,6 @@ async function newCanvas(measurements) {
     })
   }
 
-  // memory issues, try this api next:
-  // http://sharp.pixelplumbing.com/en/stable/api-composite/
   function createCanvas(images) {
     new Jimp(canvasWidth, canvasHeight, backgroundColor, async (err, canvas) => {
       if (err) console.log(err)
