@@ -5,7 +5,6 @@ const fs = require('fs');
 const readline = require('readline');
 
 const IMAGE_FOLDER = './images/';
-const TEMP_FOLDER = './temp/'
 const SAVED_IMAGES = './saved-images/'
 
 let backgroundColor = '#FFFFFF';
