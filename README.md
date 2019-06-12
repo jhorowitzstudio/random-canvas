@@ -11,7 +11,7 @@
 ## 1b. Install on a Mac Computer without any packages installed.
 1. Open the `Terminal` application found in `/Applications/Utilities/Terminal.app`
 2. Install x-code command line tools: `xcode-select --install`
-3. Install [node](https://nodejs.org/en/)
+3. Install node from [nodejs.org](https://nodejs.org/en/)
 4. Install homebrew `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 5. Install git `brew install git`
 
