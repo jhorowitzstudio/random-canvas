@@ -15,6 +15,7 @@
 4. Install homebrew `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 5. Install git `brew install git`
 
+## RUNNING PROGRAM
 
 ### Running the Program for the First Time
 1. Open the `Terminal` application found in `/Applications/Utilities/Terminal.app`
