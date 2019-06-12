@@ -14,6 +14,9 @@
 3. Install node from [nodejs.org](https://nodejs.org/en/)
 4. Install homebrew `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 5. Install git `brew install git`
+6. Download the project files by entering `git clone https://github.com/jhorowitzstudio/random-canvas.git`
+	  -  Wait for the download to finish ("..., done.")
+
 
 ## RUNNING PROGRAM
 
