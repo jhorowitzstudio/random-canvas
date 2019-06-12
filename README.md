@@ -33,5 +33,5 @@
 
 
 ### More
-__To Cancel:__ Press `Control-C`
-__To Start Again (After Completing or Cancelling):__ enter `node start`
+- __To Cancel:__ Press `Control-C`
+- __To Start Again (After Completing or Cancelling):__ enter `node start`
